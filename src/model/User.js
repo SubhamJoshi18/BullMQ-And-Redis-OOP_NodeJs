@@ -22,6 +22,15 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, nonFieldProperty("Confirm Password")],
     },
+    profile: {
+      type: String,
+    },
+    News: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "News",
+      },
+    ],
   },
   {
     timestamps: true,

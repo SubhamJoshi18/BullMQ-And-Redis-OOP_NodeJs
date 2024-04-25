@@ -10,4 +10,9 @@ userRouter.get(
   ProfileController.ViewProfile
 );
 
+userRouter.put(
+  "/user/:id",
+  MiddleWare.verifyToken,
+  ProfileController.updateProfile
+);
 export default userRouter;

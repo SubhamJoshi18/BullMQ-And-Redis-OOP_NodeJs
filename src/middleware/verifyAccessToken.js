@@ -1,7 +1,8 @@
-import Token from "../utils/jwt/token.js";
+import dotenv from "dotenv";
+dotenv.config();
 import jwt from "jsonwebtoken";
 
-class MiddleWare extends Token {
+class MiddleWare {
   static async verifyToken(req, res, next) {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -10,8 +11,10 @@ class MiddleWare extends Token {
       });
     }
     const token = authHeader.split(" ")[1];
-    console.log(token);
-    jwt.verify(token, Token.secretkey, (err, payload) => {
+    const secreyKey =
+      "d624065e66687f08b304877acb2b5a968c0ed94a56824e98bd79c16191843dae";
+
+    jwt.verify(token, secreyKey, (err, payload) => {
       if (err) {
         console.log(err);
       } else {
